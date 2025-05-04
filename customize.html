@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize 3D Model</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .customize-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+
+        .customize-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .customize-container label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .customize-container input,
+        .customize-container select,
+        .customize-container button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .customize-container button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .customize-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="customize-container">
+        <h2>Customize Your 3D Model</h2>
+        <form id="customizeForm">
+            <label for="dimensions">Dimensions (cm):</label>
+            <input type="text" id="dimensions" placeholder="e.g., 10x10x10" required>
+
+            <label for="material">Material:</label>
+            <select id="material" required>
+                <option value="plastic">Plastic</option>
+                <option value="metal">Metal</option>
+                <option value="resin">Resin</option>
+            </select>
+
+            <label for="complexity">Complexity:</label>
+            <select id="complexity" required>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+
+            <button type="submit">Get Estimate</button>
+        </form>
+        <p id="estimate"></p>
+    </div>
+
+    <script>
+        document.getElementById("customizeForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const dimensions = document.getElementById("dimensions").value;
+            const material = document.getElementById("material").value;
+            const complexity = document.getElementById("complexity").value;
+
+            let baseCost = 100; // Base cost for the model
+            if (material === "metal") baseCost += 500;
+            if (material === "plastic") baseCost += 200;
+            if (material === "resin") baseCost += 300;
+
+            if (complexity === "medium") baseCost *= 10;
+            if (complexity === "low") baseCost *= 5;
+            if (complexity === "high") baseCost *= 15;
+
+            const estimate = `Estimated cost for your 3D model: Rs ${baseCost}`;
+            document.getElementById("estimate").textContent = estimate;
+        });
+    </script>
+</body>
+
+</html>
