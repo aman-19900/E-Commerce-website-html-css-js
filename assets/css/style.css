@@ -701,3 +701,20 @@ a {
 a:hover {
   color: var(--accent-color);
 }
+
+/* Animated Image */
+.animated-image {
+  animation: comeForward 2s ease-in-out infinite alternate;
+  transform-origin: center;
+  display: block;
+  margin: auto;
+}
+
+@keyframes comeForward {
+  0% {
+    transform: perspective(1000px) translateZ(0) rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(1000px) translateZ(50px) rotateX(10deg) rotateY(10deg);
+  }
+}
